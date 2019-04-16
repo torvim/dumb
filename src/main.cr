@@ -14,6 +14,7 @@ def main()
 		args = input
 
 		#fork process and transorm into base and arguments
+		
 		process = Process.fork {
 			Process.exec base, args
 		}
