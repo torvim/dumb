@@ -5,25 +5,20 @@ module Ext
 		end
 
 		def handle(base, args)
-			found = false
-
-			found = handle_alias(base)
-
-			return found
+			return false
 		end
 
 		def handle_alias(base)
-			if base == "x"
-				puts "test"
+			aliases = [
+				["rm", "trash"]
+			]
 
-			else
-				return false
-			end
+			aliases.each{ |alias_i| return alias_i[1] if base == alias_i[0]}
+			return ""
 		end
 
 		def prompt()
 			return Dir.current + " > "
 		end
 	end
-	
 end
