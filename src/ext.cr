@@ -5,11 +5,25 @@ module Ext
 		end
 
 		def handle(base, args)
-			return false
+			found = false
+
+			found = handle_alias(base)
+
+			return found
 		end
 
-		def alias
+		def handle_alias(base)
+			if base == "x"
+				puts "test"
 
+			else
+				return false
+			end
+		end
+
+		def prompt()
+			return Dir.current + " > "
 		end
 	end
+	
 end
