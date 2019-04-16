@@ -1,8 +1,8 @@
 require "fancyline"
-
+require "./builtins.cr"
+require "./ext.cr"
 
 def main()
-
 	fancy = Fancyline.new
 
 	while input = fancy.readline(Dir.current + " > ") # Ask the user for input
@@ -13,21 +13,19 @@ def main()
 		base = input.shift
 		args = input
 
-		
+		builtins = Ins::Builtins.new
+		extensions = Ext::Extensions.new
 
-		case base
-			when "cd"
-				Dir.cd(args[0])
-			when "exit"
-				exit()
-			else
-				#fork process and transorm into base and arguments
-				process = Process.fork {
-					Process.exec base, args
-				}
-				#wait for process to end
-				process.wait()
-			end
+		if builtins.handle(base, args) != false
+		elsif extensions.handle(base, args) != false
+		else
+			#fork process and transorm into base and arguments
+			process = Process.fork {
+				Process.exec base, args
+			}
+			#wait for process to end
+			process.wait()
+		end
 	end
 end
 
