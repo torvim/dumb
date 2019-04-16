@@ -1,18 +1,9 @@
-name: shell
+name: dumb
 version: 0.1.0
 
-# authors:
-#   - name <email@example.com>
-
-# description: |
-#   Short description of shell
+description: |
+  A shell which is dumb out of the box.
 
 dependencies:
-          fancyline:
-                      github: Papierkorb/fancyline
-
-# development_dependencies:
-#   webmock:
-#     github: manastech/webmock.cr
-
-# license: MIT
+  fancyline:
+    github: Papierkorb/fancyline
