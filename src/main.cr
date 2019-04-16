@@ -5,7 +5,7 @@ def main()
 
 	fancy = Fancyline.new
 
-	while input = fancy.readline("$ ") # Ask the user for input
+	while input = fancy.readline(Dir.current + " > ") # Ask the user for input
 		next if input.nil? || input.empty?
 		input = input.split(" ")
 
@@ -13,14 +13,21 @@ def main()
 		base = input.shift
 		args = input
 
-		#fork process and transorm into base and arguments
 		
-		process = Process.fork {
-			Process.exec base, args
-		}
 
-		#wait for process to end
-		process.wait()
+		case base
+			when "cd"
+				Dir.cd(args[0])
+			when "exit"
+				exit()
+			else
+				#fork process and transorm into base and arguments
+				process = Process.fork {
+					Process.exec base, args
+				}
+				#wait for process to end
+				process.wait()
+			end
 	end
 end
 
