@@ -1,8 +1,8 @@
-name: dumb
+name: nu
 version: 0.1.0
 
 description: |
-  A shell which is dumb out of the box.
+  nu is a modern, suckless shell which aims to be as configurable and user friendly as possible.
 
 dependencies:
   fancyline:

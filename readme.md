@@ -1,4 +1,3 @@
-# Dumb
+# nu
 
-
-A shell which is dumb out of the box. Very WIP, meant to be minimal and modular as possible.
+nu is a modern, suckless shell which aims to be as configurable and user friendly as possible.
