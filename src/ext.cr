@@ -18,7 +18,13 @@ module Ext
 		end
 
 		def prompt()
-			return Dir.current + " > "
+			dir = Dir.current
+			if ENV["HOME"] == dir
+				return "~ > "
+			else
+				dir_last = dir.split("/").last
+				return dir_last + " > "
+			end
 		end
 	end
 end

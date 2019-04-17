@@ -1,3 +1,1 @@
-#!/usr/bin/env bash
-
-crystal build src/main.cr bin/dumb
+crystal build src/main.cr -o bin/dumb
