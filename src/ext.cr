@@ -4,8 +4,12 @@ module Ext
 			
 		end
 
-		def handle(base, args)
+		def user_scripts(base, args)
 			return false
+		end
+
+		def colours(base, args, output)
+			return output.colorize(:yellow).to_s
 		end
 
 		def handle_alias(base)

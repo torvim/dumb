@@ -8,7 +8,7 @@ def run(base, args)
 		begin
 			Process.exec base, args
 		rescue
-			puts "command not found"
+			puts "[#{base}]: Command not found"
 		end
 	}
 	#wait for process to end
@@ -17,6 +17,18 @@ end
 
 def main()
 	fancy = Fancyline.new
+
+	fancy.autocomplete.add do |ctx, range, word, yielder|
+		completions = yielder.call(ctx, range, word)
+
+		Dir.new("./").each { |file|
+			if file.starts_with?(word)
+				completions << Fancyline::Completion.new(range, file)
+			end
+		}
+
+		 completions
+	end
 
 	builtins = Ins::Builtins.new
 	extensions = Ext::Extensions.new
@@ -34,7 +46,8 @@ def main()
 			alias_base = aliased.shift
 			alias_args = aliased
 			run alias_base, alias_args
-		elsif extensions.handle(base, args) != false
+			
+		elsif extensions.user_scripts(base, args) != false
 		elsif builtins.handle(base, args) != false
 		else
 			run base, args
