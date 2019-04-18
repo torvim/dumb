@@ -6,7 +6,7 @@ module Ext
 
 		def colours()
 			return {
-				"base": :white,
+				"base": :blue,
 				"args": :white
 			}
 		end
@@ -30,7 +30,7 @@ module Ext
 				return "~ > "
 			else
 				dir_last = dir.split("/").last
-				return dir_last + " > "
+				return (dir_last + " ").colorize(:green).to_s
 			end
 		end
 	end
