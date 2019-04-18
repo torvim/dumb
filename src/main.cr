@@ -16,22 +16,33 @@ def run(base, args)
 end	
 
 def main()
+	builtins = Ins::Builtins.new
+	extensions = Ext::Extensions.new
+
 	fancy = Fancyline.new
+
+	fancy.display.add do |ctx, line, yielder|
+		colour_config = extensions.colours()
+
+		#base colours
+		line = line.gsub(/^[^\s]+/, &.colorize(colour_config["base"]))
+		#args colours
+		line = line.gsub(/\B\-\w+/, &.colorize(colour_config["args"])) 
+		
+
+		# Then we call the next middleware with the modified line
+		yielder.call ctx, line
+	end
 
 	fancy.autocomplete.add do |ctx, range, word, yielder|
 		completions = yielder.call(ctx, range, word)
 
-		Dir.new("./").each { |file|
-			if file.starts_with?(word)
-				completions << Fancyline::Completion.new(range, file)
-			end
+		Dir.glob("*" + word + "*").each { |file|
+			completions << Fancyline::Completion.new(range, file)
 		}
 
-		 completions
+		completions
 	end
-
-	builtins = Ins::Builtins.new
-	extensions = Ext::Extensions.new
 
 	while input = fancy.readline(extensions.prompt()) # Ask the user for input
 		next if input.nil? || input.empty?

@@ -4,12 +4,15 @@ module Ext
 			
 		end
 
-		def user_scripts(base, args)
-			return false
+		def colours()
+			return {
+				"base": :white,
+				"args": :white
+			}
 		end
 
-		def colours(base, args, output)
-			return output.colorize(:yellow).to_s
+		def user_scripts(base, args)
+			return false
 		end
 
 		def handle_alias(base)

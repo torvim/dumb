@@ -1,1 +1,1 @@
-crystal build src/main.cr -o bin/dumb
+crystal build src/main.cr -o bin/nu

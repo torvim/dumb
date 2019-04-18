@@ -17,8 +17,12 @@ module Ins
 							Dir.cd(@last_dir)
 							@last_dir = old_last_dir
 						else
-							@last_dir = Dir.current
-							Dir.cd(args[0])
+							begin
+								@last_dir = Dir.current
+								Dir.cd(args[0])
+							rescue
+								puts "[#{args[0]}]: Directory not found"
+							end
 					end
 
 				when "exit"
