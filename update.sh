@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/torvim/nu
-cd nu
+git pull
 
 if
 	shards install
