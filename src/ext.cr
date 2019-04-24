@@ -1,5 +1,8 @@
+require "./scripts/*"
+
 module Ext
 	class Extensions
+
 		def initialize()
 			
 		end
