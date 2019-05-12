@@ -15,13 +15,15 @@ module Ext
 		end
 
 		def user_scripts(base, args)
-			return false
+			if base == "ily"
+				puts "i love you too"
+			else
+				return false
+			end
 		end
 
 		def handle_alias(base)
-			aliases = [
-				["rm", "trash"]
-			]
+			aliases = [["", ""]]
 
 			aliases.each{ |alias_i| return alias_i[1] if base == alias_i[0]}
 			return ""
